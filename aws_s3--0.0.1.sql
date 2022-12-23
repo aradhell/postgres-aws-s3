@@ -63,8 +63,8 @@ AS $$
                 SD['__modules__'] = module_cache
             module_cache[module_name] = _module
             return _module
-
     boto3 = cache_import('boto3')
+    from botocore.config import Config
     tempfile = cache_import('tempfile')
     gzip = cache_import('gzip')
     shutil = cache_import('shutil')
@@ -185,6 +185,7 @@ AS $$
             return _module
 
     boto3 = cache_import('boto3')
+    from botocore.config import Config
     tempfile = cache_import('tempfile')
 
     plan = plpy.prepare("select name, current_setting('aws_s3.' || name, true) as value from (select unnest(array['access_key_id', 'secret_access_key', 'session_token', 'endpoint_url']) as name) a");
