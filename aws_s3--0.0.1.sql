@@ -83,8 +83,8 @@ AS $$
     }
 
     boto_resource_config = Config(
-        read_timeout=3600,
-        connect_timeout=3600,
+        read_timeout=7200,
+        connect_timeout=7200,
         retries={"max_attempts": 3}
     )
 
@@ -201,8 +201,8 @@ AS $$
     }
 
     boto_config = Config(
-        read_timeout=3600,
-        connect_timeout=3600,
+        read_timeout=7200,
+        connect_timeout=7200,
         retries={"max_attempts": 3}
     )
 
