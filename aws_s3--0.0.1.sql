@@ -193,10 +193,17 @@ AS $$
         'endpoint_url': endpoint_url if endpoint_url else default_aws_settings.get('endpoint_url')
     }
 
+    boto_config = Config(
+        read_timeout=3600,
+        connect_timeout=3600,
+        retries={"max_attempts": 3}
+    )
+
     s3 = boto3.client(
         's3',
         region_name=region,
-        **aws_settings
+        **aws_settings,
+        config=boto_config
     )
 
     with tempfile.NamedTemporaryFile() as fd:
